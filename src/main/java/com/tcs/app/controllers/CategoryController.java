@@ -3,6 +3,7 @@ package com.tcs.app.controllers;
 import com.tcs.app.dto.CategoryDTO;
 import com.tcs.app.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,9 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<CategoryDTO> getAllCategory() throws IOException {
-        return categoryService.getAllCatgories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategory() throws IOException {
+        List<CategoryDTO> allCatgories =this.categoryService.getAllCatgories();
+        return  ResponseEntity.ok(allCatgories);
     }
+
 }
