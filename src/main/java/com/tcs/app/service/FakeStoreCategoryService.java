@@ -3,6 +3,7 @@ package com.tcs.app.service;
 import com.tcs.app.dto.CategoryDTO;
 import com.tcs.app.gateway.ICategoryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
