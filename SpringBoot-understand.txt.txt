@@ -1,0 +1,5 @@
+1.create a plain .env file and added that to .gitignore this ensured that this file is not tracked by VC
+2.Put the env variable value in the .env file--> PORT=8081.
+3.In the application.properties access the port from env varibales using ${PORT}
+4.Before running the server , load the .env file and populate the env variables
+5.Run the server
