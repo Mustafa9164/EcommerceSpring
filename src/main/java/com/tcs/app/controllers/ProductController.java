@@ -3,10 +3,7 @@ package com.tcs.app.controllers;
 import com.tcs.app.dto.ProductDto;
 import com.tcs.app.service.IProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/products")
@@ -23,4 +20,13 @@ public class ProductController {
         ProductDto result = iProductService.getProductById(id);
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto){
+        ProductDto product = iProductService.createProduct(dto);
+        System.out.println("Product saved");
+        return ResponseEntity.ok(product);
+    }
+
+
 }
