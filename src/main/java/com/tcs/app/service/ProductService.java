@@ -1,8 +1,10 @@
 package com.tcs.app.service;
 
 import com.tcs.app.dto.ProductDto;
+import com.tcs.app.entity.Category;
 import com.tcs.app.entity.Product;
 import com.tcs.app.mapper.ProductMapper;
+import com.tcs.app.repository.CategoryRepository;
 import com.tcs.app.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class ProductService implements IProductService{
 
     private final ProductRepository repo;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    ProductService(ProductRepository repo){
+    ProductService(ProductRepository repo,CategoryRepository categoryRepository){
         this.repo=repo;
+        this.categoryRepository=categoryRepository;
     }
     @Override
     public ProductDto getProductById(Long id) throws Exception {
@@ -29,8 +33,11 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public ProductDto createProduct(ProductDto dto) {
-        Product saved = repo.save(ProductMapper.toEntity(dto)); //covert dto to entity
+    public ProductDto createProduct(ProductDto dto) throws Exception {
+
+        Category category=categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new Exception("Catgory not found"));
+        Product saved = repo.save(ProductMapper.toEntity(dto,category)); //covert dto to entity
         return  ProductMapper.toDto(saved);                     //dto to entity
     }
 }

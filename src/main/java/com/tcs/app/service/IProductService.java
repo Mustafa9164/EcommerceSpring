@@ -7,5 +7,5 @@ public interface IProductService {
 
     ProductDto getProductById(Long id) throws Exception;
 
-    ProductDto createProduct(ProductDto dto);
+    ProductDto createProduct(ProductDto dto) throws Exception;
 }

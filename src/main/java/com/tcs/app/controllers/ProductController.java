@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto){
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto) throws Exception {
         ProductDto product = iProductService.createProduct(dto);
         System.out.println("Product saved");
         return ResponseEntity.ok(product);
